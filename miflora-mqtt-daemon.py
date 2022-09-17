@@ -248,7 +248,12 @@ while True:
 
         #Publish the data to the broker
         print_line('Publishing to MQTT topic "{}/{}"'.format(base_topic, flora_name))
-        mqtt_client.publish('{}/{}'.format(base_topic, flora_name), json.dumps(data))
+
+        dataList = ["light", "temperature", "moisture", "conductivity", "battery"]
+
+        for dataName in dataList:
+            mqtt_client.publish('{}/{}/{}'.format(base_topic, flora_name, dataName), data.get(dataName))
+
         sleep(0.5) # some slack for the publish roundtrip and callback function
 
         print()
