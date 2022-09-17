@@ -195,15 +195,15 @@ for [name, mac] in config['Sensors'].items():
     flores[name_clean] = flora
 
 # Discovery Announcement
-print_line('Announcing Mi Flora devices to MQTT broker for auto-discovery ...')
-flores_info = dict()
-for [flora_name, flora] in flores.items():
-    flora_info = {key: value for key, value in flora.items() if key not in ['poller', 'stats']}
-    flora_info['topic'] = '{}/{}'.format(base_topic, flora_name)
-    flores_info[flora_name] = flora_info
-mqtt_client.publish('{}/$announce'.format(base_topic), json.dumps(flores_info), retain=True)
-sleep(0.5) # some slack for the publish roundtrip and callback function
-print()
+#print_line('Announcing Mi Flora devices to MQTT broker for auto-discovery ...')
+#flores_info = dict()
+#for [flora_name, flora] in flores.items():
+#    flora_info = {key: value for key, value in flora.items() if key not in ['poller', 'stats']}
+#    flora_info['topic'] = '{}/{}'.format(base_topic, flora_name)
+#    flores_info[flora_name] = flora_info
+#mqtt_client.publish('{}/$announce'.format(base_topic), json.dumps(flores_info), retain=True)
+#sleep(0.5) # some slack for the publish roundtrip and callback function
+#print()
 
 print_line('Initialization complete, starting MQTT publish loop', console=False, sd_notify=True)
 
